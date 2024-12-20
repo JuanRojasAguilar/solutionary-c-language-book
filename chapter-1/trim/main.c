@@ -5,7 +5,7 @@
 void get_word(char target[], int len);
 void trim(char word[], char target[]);
 
-int main(void)
+int main(int argc, char **argv)
 {
   char line[MAXLEN];
   char response[MAXLEN];
@@ -21,14 +21,12 @@ int main(void)
 void get_word(char target[], int len) {
   int c, idx;
 
-  for (idx = 0; idx < (len -1) && (c=getchar()) != EOF && c != '\n'; ++idx) {
+  for(idx = 0; idx < (len - 1) && (c = getchar()) != EOF && c != '\n'; ++idx) {
     target[idx] = c;
   }
 
-  if (c == '\n') {
-    target[idx] = c;
-    ++idx;
-  }
+  target[idx] = '\n';
+  ++idx;
   target[idx] = '\0';
 }
 
