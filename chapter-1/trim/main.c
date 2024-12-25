@@ -2,7 +2,7 @@
 
 #define MAXLEN 100
 
-void get_word(char target[], int len);
+void get_word(char target[]);
 void trim(char word[], char target[]);
 
 int main(int argc, char **argv)
@@ -10,7 +10,7 @@ int main(int argc, char **argv)
   char line[MAXLEN];
   char response[MAXLEN];
 
-  get_word(line, MAXLEN);
+  get_word(line);
   trim(line, response);
 
   printf("%s\n", response);
@@ -18,10 +18,10 @@ int main(int argc, char **argv)
   return 0;
 }
 
-void get_word(char target[], int len) {
+void get_word(char target[]) {
   int c, idx;
 
-  for(idx = 0; idx < (len - 1) && (c = getchar()) != EOF && c != '\n'; ++idx) {
+  for(idx = 0; idx < (MAXLEN - 1) && (c = getchar()) != EOF && c != '\n'; ++idx) {
     target[idx] = c;
   }
 
