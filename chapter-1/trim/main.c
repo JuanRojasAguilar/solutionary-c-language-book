@@ -6,7 +6,7 @@
 void get_word(char target[]);
 void trim(char word[]);
 
-int main(int argc, char **argv)
+int main(void)
 {
   char line[MAXLEN];
 
