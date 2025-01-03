@@ -40,7 +40,6 @@ void reverse_line(char word[], int count)
   idx = 0;
   while (idx <= (count >> 1))
   {
-    printf("%s the letter, %d the try\n", &word[count - idx], idx);
     word[idx] = word[count - idx] ^ word[idx];
     word[count - idx] = word[idx] ^ word[count - idx];
     word[idx] = word[count - idx] ^ word[idx];
