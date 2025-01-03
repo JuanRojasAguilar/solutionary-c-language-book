@@ -21,6 +21,7 @@ void get_line()
 {
   int idx;
   int c;
+  extern char line[];
 
   idx = 0;
   while (idx < (MAXLEN - 1) && (c = getchar()) != EOF && c != '\n')
@@ -39,6 +40,7 @@ void get_line()
 void reverse_line(int count)
 {
   int idx;
+  extern char line[];
 
   --count;
   idx = 0;

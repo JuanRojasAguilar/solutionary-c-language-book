@@ -2,23 +2,23 @@
 
 #define MAXLINE 1000
 
-int get_line(char line[], int maxline);
-void copy(char to[], char from[]);
+int max_line_len;
+char line[MAXLINE];
+char longest[MAXLINE];
 
-int main()
+int get_line(void);
+void copy(void);
+
+int main(void)
 {
-    int curr_line_len;
-    int max_line_len;
-    char line[MAXLINE];
-    char longest[MAXLINE];
+    int curr_line_len = 0;
 
-    max_line_len = curr_line_len = 0;
-    while ((curr_line_len = get_line(line, MAXLINE)) > 0)
+    while ((curr_line_len = get_line()) > 0)
     {
         if (curr_line_len > max_line_len)
         {
             max_line_len = curr_line_len;
-            copy(longest, line);
+            copy();
         }
     }
 
@@ -29,18 +29,19 @@ int main()
     return 0;
 }
 
-int get_line(char line[], int lim)
+int get_line()
 {
-    int character, i;
+    int c, i;
+    extern char line[];
 
-    for (i = 0; i < (lim - 1) && (character = getchar()) != EOF && character != '\n'; ++i)
+    for (i = 0; i < (MAXLINE - 1) && (c = getchar()) != EOF && c != '\n'; ++i)
     {
-        line[i] = character;
+        line[i] = c;
     }
 
-    if (character == '\n')
+    if (c == '\n')
     {
-        line[i] = character;
+        line[i] = c;
         ++i;
     }
 
@@ -48,12 +49,11 @@ int get_line(char line[], int lim)
     return i;
 }
 
-void copy(char to[], char from[])
+void copy()
 {
-    int i;
+    int i = 0;
 
-    i = 0;
-    while ((to[i] = from[i]) != '\0')
+    while ((longest[i] = line[i]) != '\0')
     {
         ++i;
     }
