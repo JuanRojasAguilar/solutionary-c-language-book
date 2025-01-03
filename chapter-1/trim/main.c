@@ -12,7 +12,6 @@ int main(void)
 
   get_word(line);
   trim(line);
-
   puts(line);
 
   return 0;
@@ -33,16 +32,16 @@ void get_word(char target[]) {
 }
 
 void trim(char word[]) {
-  int i = 0, ri = 0;
+  int idx = 0, res_idx = 0;
   char res[MAXLEN];
 
-  while (word[i] != '\0') {
-    if (word[i] != ' ' && word[i] != '\t') {
-      res[ri] = word[i];
-      ++ri;
+  while (word[idx] != '\0') {
+    if (word[idx] != ' ' && word[idx] != '\t') {
+      res[res_idx] = word[idx];
+      ++res_idx;
     }
-    ++i;
+    ++idx;
   }
-  res[ri] = '\0';
+  res[res_idx] = '\0';
   strcpy(word, res);
 }
