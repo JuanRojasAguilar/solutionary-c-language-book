@@ -1,17 +1,19 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 #define MAXLEN 1000
 
 void get_line();
 void reverse_line(int count);
 
-static char line[MAXLEN];
+char line[MAXLEN];
 
 int main(void)
 {
   get_line();
-  puts(line);
-
+  reverse_line(strlen(line));
+  printf("Reversed line: %s\n", line);
   return 0;
 }
 
@@ -21,7 +23,7 @@ void get_line()
   int c;
 
   idx = 0;
-  while (idx < (MAXLEN - 1) && (c = getchar()) != EOF && c != '\n' && c != '\0')
+  while (idx < (MAXLEN - 1) && (c = getchar()) != EOF && c != '\n')
   {
     line[idx] = c;
     ++idx;
@@ -32,15 +34,13 @@ void get_line()
   }
 
   line[idx] = '\0';
-  reverse_line(idx);
 }
 
 void reverse_line(int count)
 {
   int idx;
 
-  count -= 1;
-
+  --count;
   idx = 0;
   while (idx <= (count >> 1))
   {
