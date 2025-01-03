@@ -2,20 +2,20 @@
 
 #define MAXLEN 1000
 
-void get_line(char word[]);
-void reverse_line(char word[], int count);
+void get_line();
+void reverse_line(int count);
+
+static char line[MAXLEN];
 
 int main(void)
 {
-  char line[MAXLEN];
-
-  get_line(line);
+  get_line();
   puts(line);
 
   return 0;
 }
 
-void get_line(char word[])
+void get_line()
 {
   int idx;
   int c;
@@ -23,15 +23,19 @@ void get_line(char word[])
   idx = 0;
   while (idx < (MAXLEN - 1) && (c = getchar()) != EOF && c != '\n' && c != '\0')
   {
-    word[idx] = c;
+    line[idx] = c;
     ++idx;
   }
 
-  word[idx] = '\0';
-  reverse_line(word, idx);
+  if (idx == MAXLEN - 1) {
+    fprintf(stderr, "It stopped at %d char", idx);
+  }
+
+  line[idx] = '\0';
+  reverse_line(idx);
 }
 
-void reverse_line(char word[], int count)
+void reverse_line(int count)
 {
   int idx;
 
@@ -40,11 +44,11 @@ void reverse_line(char word[], int count)
   idx = 0;
   while (idx <= (count >> 1))
   {
-    word[idx] = word[count - idx] ^ word[idx];
-    word[count - idx] = word[idx] ^ word[count - idx];
-    word[idx] = word[count - idx] ^ word[idx];
+    line[idx] = line[count - idx] ^ line[idx];
+    line[count - idx] = line[idx] ^ line[count - idx];
+    line[idx] = line[count - idx] ^ line[idx];
 
     ++idx;
   }
-  word[count + 1] = '\0';
+  line[count + 1] = '\0';
 }
